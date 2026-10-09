@@ -64,7 +64,7 @@ def delete_Author():
     delCheck = input("Enter AuthorID: ")
     if delCheck in myAuthors:
         del myAuthors[delCheck]
-def author_Menu()():
+def author_Menu():
     print("1. Add Author")
     print("2. Delete Author")
     print("3. Display Authors")
@@ -82,18 +82,37 @@ while True:
     if select == 1:
         book_Menu()
         bSelect = int(input("Enter Select Option: "))
-            if bSelect == 1:
-                add_book()
-                b = b+1
-            if bSelect == 2:
-                delete_book()
-            if bSelect == 3:
-                print(myBooks)
-            if bSelect == 4:
+        if bSelect == 1:
+          add_book()
+          b = b+1
+        if bSelect == 2:
+            delete_book()
+        if bSelect == 3:
+            print(myBooks)
+        if bSelect == 4:
                 menu()
     if select == 2:
         user_Menu()
+        uSelect = int(input("Enter Select Option: "))
+        if uSelect == 1:
+            add_User()
+            u = u+1
+        if uSelect == 2:
+            delete_User()
+        if uSelect == 3:
+            print(myUsers)
+        if uSelect == 4:
+            menu()
     if select == 3:
         author_Menu()
+        aSelect = int(input("Enter Select Option: "))
+        if aSelect == 1:
+            add_Author()
+            a = a+1
+        if aSelect == 2:
+            delete_Author()
+        if aSelect == 3:
+            print(myAuthors)
+            menu()
     if select == 4:
         exit()
