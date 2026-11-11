@@ -1,25 +1,30 @@
+
+
 import mysql.connector
 db = mysql.connector.connect(
-    host = "localhost"
-    user = "root"         
-    password = "password" 
-		database = "MasterDB"
+    host = "localhost",
+    user = "root",
+    password = "password",
+	database = "MasterDB"
 )
 cursor = db.cursor()
+cursor.execute("CREATE DATABASE MasterDB")
+cursor.execute("USE MasterDB")
+print("Database created!")
+db.close()
+
 class Student_Master:
     def __init__(self, stu_name, stu_major, stu_courses, stu_cgpa):
         self.stu_name = stu_name
         self.stu_major = stu_major
         self.stu_courses = stu_courses
         self.stu_cgpa = stu_cgpa
-
 class Faculty_Master:
     def __init__(self, fac_id, fac_name, fac_department, fac_teaches_courses):
         self.fac_id = fac_id
         self.fac_name = fac_name
         self.fac_department = fac_department
         self.fac_teaches_courses = fac_teaches_courses
-
 def build_objects():
     students = [
         Student_Master(1001, "Zeke Wiggins", "Game Design",
@@ -46,18 +51,14 @@ def build_objects():
                        ["ENG102"]),
     ]
     return students, faculty
-
-
 def get_connection():
     """Connect to the school_db database, creating it if needed."""
-    server = mysql.connector.connect(**MasterDB)
+    server = mysql.connector.connect(**db)
     cursor = server.cursor()
-    cursor.execute(f"CREATE DATABASE IF NOT EXISTS {database}")
+    cursor.execute(f"CREATE DATABASE IF NOT EXISTS {db}")
     cursor.close()
-    server.database = database
+    server.database = db
     return server
-
-
 def create_tables():
     conn = get_connection()
     cursor = conn.cursor()
@@ -160,5 +161,5 @@ Choice: """
                 break
             else:
                 print("Invalid choice.")
-if __name__ == "__main__":
-	main()
+finally __name__ == "__main__":
+    main()
